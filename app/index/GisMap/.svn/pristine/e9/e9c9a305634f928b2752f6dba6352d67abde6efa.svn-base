@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>小区分析GisMap</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+    <!-- 引用云Gis显示中间件的类库 -->
+    <script type="text/javascript" src="./gis.js"></script>
+    <!-- 应用程序的代码区 -->
+    <script type="text/javascript">
+        var iconPath = '';
+        //Gis实例的变量
+        var gis001;
+        var initGisOver = function(){}
+        var callEventOpen = function(){}
+
+        //初始化Gis实例的函数
+        function initGis(style,option,callback,callEvOpen){
+            iconPath = option.host + '/resource/images/mapicon/';
+            //样式初始化
+            $('html,body,#gis001DIV').css('height',style.height);
+            $('html,body,#gis001DIV').css('width',style.width);
+            setTimeout(function(){
+                $('#gis001DIV').css('height',document.body.height);
+                $('#gis001DIV').css('width',document.body.width);},100)
+
+            //构造Gis实例
+            gis001 = new Gis(option.appCode);
+            //设置云Gis显示中件要显示的地方,表示该Gis实例要显示在id为'gis001DIV'的矩形区域里
+            gis001.divID = 'gis001DIV';
+            //设置Gis实例的高度
+            gis001.height = '100%';
+            //设置Gis实例的宽度
+            gis001.width = '100%';
+            //设置地图的显示级别
+            gis001.level = option.level;
+            //设置地图中心点的地市
+            gis001.districtName = option.districtName;
+            //设置回调函数名
+            gis001.mapLoadListenerFunctionName = 'initGisOver';
+            //设置回调函数
+            initGisOver  = callback;
+            callEventOpen = callEvOpen;
+            //调用该函数初始化Gis实例
+            gis001.init();
+
+        };
+
+        var afterinit = function(){
+            gis001.addMapEventListener(gis001.MapEvent_PointMarkerClick,
+                    'onPointMarkerClicked');
+        }
+
+
+
+
+
+        //定义公开接口
+        window.apis = {
+            init:function(style,option,callback,callEvOpen){initGis(style,option,callback,callEvOpen);},
+            afterinit:function(){afterinit()},
+        }
+    </script>
+    <style>
+        #gis001DIV_zoom_slider{
+            top:70px;
+        }
+        #_gis_Switch_BaseMap{
+            right:70px!important;
+            bottom: 35px!important;
+        }
+    </style>
+</head>
+<body >
+<!-- 云Gis中间件要显示位置 -->
+<div id='gis001DIV' style="width: 100%;height: 100%;">
+
+</div>
+
+</body>
+</html>

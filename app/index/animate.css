@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translate3d(-100%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@keyframes fadeOutRight {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
+.fadeRight-enter-active,
+.fadeInRight,
+.fadeRight-leave-active,
+.fadeOutRight {
+    animation-fill-mode: both;
+}
+.fadeRight-enter-active,
+.fadeInRight {
+    animation-duration: 1s;
+    animation-name: fadeInRight;
+}
+.fadeRight-leave-active,
+.fadeOutRight {
+    animation-duration: 1s;
+    animation-name: fadeOutRight;
+}
+
+
+.fadeLeft-enter-active,
+.fadeInLeft,
+.fadeLeft-leave-active,
+.fadeOutLeft {
+
+    animation-fill-mode: both;
+}
+.fadeLeft-enter-active,
+.fadeInLeft {
+    animation-duration: 1s;
+    animation-name: fadeInLeft;
+}
+.fadeLeft-leave-active,
+.fadeOutLeft {
+    animation-duration: 1s;
+    animation-name: fadeOutLeft;
+}

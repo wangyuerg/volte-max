@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>小区分析GisMap</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://zjgis.zj.chinamobile.com/gis/api/Gis.js"></script>
+    <!--<script type="text/javascript" src="./Gis-local.js"></script>-->
+    <!-- 引用云Gis显示中间件的类库 -->
+   <!-- <script type="text/javascript" src="gis.js"></script>-->
+    <!-- 应用程序的代码区 -->
+    <script type="text/javascript">
+        var iconPath = '';
+        //Gis实例的变量
+        var gis001;
+
+
+        var currentCommPoint = null;
+        var heatPoints = null;
+        var commPoints = null;
+        var initGisOver = function(){};
+        var callEventOpen = function(){};
+
+        var i_city={
+            "杭州": {
+                y: 30.280059,
+                x: 120.161693
+            },
+            "湖州": {
+                y: 30.899015,
+                x: 120.0945660000
+            },
+            "嘉兴": {
+                y: 30.7509120000,
+                x: 120.7620450000
+            },
+            "金华": {
+                y: 29.0844550000,
+                x: 119.6540270000
+            },
+            "丽水": {
+                y: 28.4729790000,
+                x: 119.9295030000
+            },
+            "宁波": {
+                y: 29.8801770000,
+                x: 121.5566860000
+            },
+            "衢州": {
+                y: 28.9416610000,
+                x: 118.8807680000
+            },
+            "绍兴": {
+                y: 30.0365190000,
+                x: 120.5866730000
+            },
+            "台州": {
+                y: 28.6622970000,
+                x: 121.4269960000
+            },
+            "温州": {
+                y: 28.0010950000,
+                x: 120.7058690000
+            },
+            "舟山": {
+                y: 29.9910920000,
+                x: 122.2143390000
+            }
+        };
+
+        //初始化Gis实例的函数
+        function initGis(style,option,callback,callEvOpen){
+            iconPath = option.host + '/resource/images/mapicon/';
+            //样式初始化
+            $('html,body,#gis001DIV').css('height',style.height);
+            $('html,body,#gis001DIV').css('width',style.width);
+            setTimeout(function(){
+                $('#gis001DIV').css('height',document.body.height);
+                $('#gis001DIV').css('width',document.body.width);},100);
+
+            //构造Gis实例
+            gis001 = new Gis(option.appCode);
+            //设置云Gis显示中件要显示的地方,表示该Gis实例要显示在id为'gis001DIV'的矩形区域里
+            gis001.divID = 'gis001DIV';
+            //设置Gis实例的高度
+            gis001.height = '100%';
+            //设置Gis实例的宽度
+            gis001.width = '100%';
+            //设置地图的显示级别
+            gis001.level = option.level;
+            //设置地图中心点的地市
+            gis001.districtName = option.districtName;
+            //设置回调函数名
+            gis001.mapLoadListenerFunctionName = 'initGisOver';
+            //设置回调函数
+            initGisOver  = callback;
+            callEventOpen = callEvOpen;
+            //调用该函数初始化Gis实例
+            gis001.init();
+
+        }
+
+        var dbck;
+        //初始化后回调方法
+        var afterinit = function(){
+        		gis001.showInternalLayer('v100_m');
+            gis001.setDoubleClickZoomEnabled(false);
+
+            gis001.addMapEventListener(gis001.MapEvent_PointMarkerDbClick,
+                    'm_PointMarkerDbClick');
+            gis001.addMapEventListener(gis001.MapEvent_PointMarkerClick,
+                    'm_PointMarkerClick');
+        };
+        //地图标记单击方法
+        function m_PointMarkerClick(o){
+            dbck=false;
+            window.setTimeout(cc, 200);
+            function cc(){
+                if(dbck!=false)return;
+            }
+        }
+        //地图标记双击方法
+        function m_PointMarkerDbClick(o){
+            if(o._gis_layer_id === 'commPoints' || 'commPoint'){
+                var _id = o.id.substring(o.id.indexOf('@')+1);
+                callEventOpen(_id);
+            }
+
+        }
+        //图层控制方法
+        var layerControl = function(){
+            gis001.moveToTopById('commPoints','point');
+            gis001.moveToTopById('ellipseLayer');
+            gis001.moveToTopById('commPoint','point');
+        };
+        //城市值变化方法
+        var cityChange = function(val){
+            var _xy =i_city[val];
+            gis001.setMapCenter({
+                x:_xy.x,
+                y:_xy.y
+            });
+        };
+        //显示点击小区点
+        var showCommPoint = function (id,x,y){
+            //移除原有点
+            if(currentCommPoint){
+                gis001.removePointMarkersById([currentCommPoint.id])
+            }
+            //生成小区点实例
+            for(var i = 0 ; i <commPoints.length;i++){
+                var _id = commPoints[i].id.substring(commPoints[i].id.indexOf('@')+1);
+                if(_id == id){
+                    currentCommPoint = {
+
+                        id:'cp'+x+y+'@'+id,
+                        x:x,
+                        y:y+0.00008,
+                        source:iconPath+'water.png',
+                        canShowTip:true,
+                        html:commPoints[i].html,
+                        _gis_layer_id:'commPoint'
+                    };
+                    //改变地图中心为当前选中小区位置
+                    gis001.setMapCenter ({x:currentCommPoint.x, y :currentCommPoint.y});
+                    //显示小区位置
+                    gis001.addPointMarkers([currentCommPoint]);
+                    layerControl();
+                    break;
+                }
+            }
+
+        };
+        //热力图显示方法
+        var showAlertPoint = function(p){
+            if(heatPoints!=null){
+                //显示椭圆图层
+                gis001.showInternalLayer('ellipseLayer');
+                //heatPoints为缓存的热力点，p为新的热力点
+                //以下为计算优化方法，计算出前后两组值新增和衰减的点，新增值调用GIS打点方法，衰减值调用删除方法
+                var _same = [];//相同点
+                //整理出新增的点和删除的点
+                for(var i = 0 ; i < heatPoints.length;i++){
+                    for(var j = 0 ; j <p.length;j++){
+                        if(heatPoints[i].id==('alertArea'+'@'+p[j].id)){
+                            _same.push(heatPoints[i].id);
+                            break;
+                        }
+                    }
+                }
+                var _del = [];//衰减点
+                for(var i = 0 ; i < heatPoints.length;i++){
+                    var _flag = false;
+                    for(var j = 0 ; j <_same.length;j++){
+                        if(heatPoints[i].id==_same[j]){
+                            _flag = true;
+                            break;
+                        }
+                    }
+                    if(!_flag){
+                        _del.push(heatPoints[i].id)
+                    }
+                }
+                var _add = [];//新增点
+                for(var i = 0 ; i < p.length;i++){
+                    var _flag = false;
+                    for(var j = 0 ; j <_same.length;j++){
+                        if('alertArea'+'@'+p[i].id==_same[j]){
+                            _flag = true;
+                            break;
+                        }
+                    }
+                    if(!_flag){
+                        _add.push({
+                            id:'alertArea'+'@'+p[i].id,
+                            x:p[i].x,
+                            y:p[i].y,
+                            width:16,
+                            height:16,
+                            widthForEllipseFrame:0,
+                            colourForEllipseFrame:'',
+                            colorForEllipse:"0xCD5555",
+                            alphaForEllipse:0.7
+                        })
+                    }
+                }
+                //删除点
+                if(_del.length>0){
+                    gis001.removeEcllipseById(_del);
+                }
+
+                var _p = $.map(p,function(item){
+                    return{
+                        id:'alertArea'+'@'+item.id,
+                        x:item.x,
+                        y:item.y,
+                        width:16,
+                        height:16,
+                        widthForEllipseFrame:0,
+                        colourForEllipseFrame:'',
+                        colorForEllipse:"0xCD5555",
+                        alphaForEllipse:0.7
+                    }
+                });
+                heatPoints = _p;//缓存
+                //新增点
+                if(_add.length>0){
+                    gis001.addEcllipseByBatch(_add);
+                }
+            }else{
+                var _p = $.map(p,function(item){
+                    return{
+                        id:'alertArea'+'@'+item.id,
+                        x:item.x,
+                        y:item.y,
+                        width:16,
+                        height:16,
+                        widthForEllipseFrame:0,
+                        colourForEllipseFrame:'',
+                        colorForEllipse:"0xCD5555",
+                        alphaForEllipse:0.7
+                    }
+                });
+                heatPoints = _p;
+                gis001.addEcllipseByBatch(_p);
+            }
+            layerControl();
+
+        };
+        //隐藏热力图
+        var clearHeat = function(){
+            gis001.hideInternalLayer('ellipseLayer')
+        };
+        //显示小区点方法
+        var showCommPoints = function(p){
+            if(commPoints!=null){
+                gis001.removePointMarkersById($.map(commPoints,function(item){return item.id;}));
+            }
+            //根据数据生成地图实例点
+            var _p = $.map(p,function(item){
+                var _color = '';
+                switch (item.color)
+                {
+                    case 1:
+                        _color = '0xFF0000';
+                        break;
+                    case 2:
+                        _color = '0xFFFF00';
+                        break;
+                    case 3:
+                        _color = '0x00FF00';
+                        break;
+                    default:
+                        _color = null;
+                        break;
+                }
+                if(_color == null){
+                    return null;
+                }else{
+                    return{
+                        id:'alertArea'+item.x+item.y+'@'+item.id,
+                        x:item.x,
+                        y:item.y,
+                        source : null,
+                        canShowTip:true,
+                        html:'<div>' +
+                            '小区ID:'+item.id+'<br/>'+
+                            '小区名称:'+item.cell_Name+'<br/>'+
+                            '频点:'+item.Freq+'<br/>'+
+                            'PCI:'+item.pci+'<br/>'+
+                            '质差时长占比:'+item.Worse_Quality_time_rate+'<br/>'+
+                            '上行质差时长占比:'+item.Worse_Quality_time_rate_UL+'<br/>'+
+                            '下行质差时长占比:'+item.Worse_Quality_time_rate_DL+'<br/>'+
+                            '质差通话率:'+item.Worse_Quality_call_num_rate+'<br/>'+
+                            '单通率:'+item.single_pass_call_num_rate+'<br/>'+
+                            'MOS质差通话率:'+item.Worse_MOS_call_num_rate+'<br/>'+
+                            '上行MOS:'+item.MOS_UL + '<br/>'+
+                            '下行MOS:'+ item.MOS_DL+'<br/>'+
+                            '上行丢包率:' + item.rtp_packet_loss_num_UL_rate + '<br/>'+
+                            '下行丢包率:' + item.rtp_packet_loss_num_DL_rate+'<br/>'+
+                            '上行环路时延:' + item.RTCP_ring_delay_UL + 'ms' + '<br/>'+
+                            '下行环路时延:' + item.RTCP_ring_delay_DL+ 'ms' + '<br/>'+
+                            '上行源端问题切片比例:'+item.cause_step_1_num_ul_rate + '<br/>'+
+                            '下行源端问题切片比例' + item.cause_step_1_num_dl_rate+'<br/>'+
+                            '无线问题质差切片比例:'+item.radio_problem_slice_num_rate+'<br/>'+
+                        '</div>',
+                        color:_color,
+                        _gis_layer_id:'commPoints'
+                    }
+                }
+
+            });
+            commPoints = _p.length == 0 ?[]:_p.slice(0,_p.length+1);
+            for(var i = 0 ; i <_p.length;i++){
+                gis001.addPointMarkers([_p[i]],{
+                    size:16,
+                    alpha:1,
+                    color:commPoints[i].color,
+                    style:gis001.MARKER_STYLE_CIRCLE
+                },{
+                    width:0,
+                    alpha:1,
+                    color:'0x000000',
+                    style:gis001.LINE_STYLE_SOLID
+                });
+            }
+
+            layerControl();
+        };
+
+        //定义公开接口
+        window.apis = {
+            init:function(style,option,callback,callEvOpen){initGis(style,option,callback,callEvOpen);},
+            afterinit:function(){afterinit()},
+            cityChange:function(val){cityChange(val);},
+            showCommPoint:function(id,x,y){showCommPoint(id,x,y)},
+            showAlertPoint:function(p){showAlertPoint(p)},
+            clearHeat:function(){clearHeat();},
+            showCommPoints:function(p){showCommPoints(p);}
+        }
+    </script>
+    <style>
+        #_gis_Citybox{
+            display: none;
+        }
+        #gis001DIV_zoom_slider{
+            top:70px;
+        }
+        #_gis_Switch_BaseMap{
+            right:100px!important;
+            bottom: 35px!important;
+        }
+    </style>
+</head>
+<body >
+<!-- 云Gis中间件要显示位置 -->
+<div id='gis001DIV' style="width: 100%;height: 100%;">
+
+</div>
+
+</body>
+</html>

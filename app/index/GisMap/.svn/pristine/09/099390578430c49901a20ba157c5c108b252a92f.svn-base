@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>云GIS平台应用开发指南及示例</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+    <!-- 引用云Gis显示中间件的类库 -->
+    <script type="text/javascript" src="./gis.js"></script>
+    <!-- 应用程序的代码区 -->
+    <script type="text/javascript">
+        var iconPath = '';
+        //Gis实例的变量
+        var gis001;
+        var initGisOver = function(){}
+        var callEventOpen = function(){}
+
+        var mpoints = [];
+        var uppoints = [];
+        var downpoints = [];
+        var timer = null;
+        var savePoints = function(points_,type_){
+            var generatePoints = function(p,t){
+                if(t == 0){
+                    var temp = [];
+                    for(var i = 0 ; i <p.length;i++){
+                        temp.push({
+                            id:'src' + '-' + 'Mark' +'-'+parseInt(Math.random()*10000),
+                            x:p[i].Longitude,
+                            y:p[i].Latitude,
+                            source:iconPath+'c'+p[i].color+'.png',
+                            canShowTip:true,
+                            html:'<div><p>时间:'+p[i].measureTime+'</p><p>小区:'+p[i].CELLID+'</p>' +
+                                '<p>MR类型:'+p[i].MrType+'</p><p>RSRP:'+p[i].ServingRSRP+'</p>' +
+                                '<p>RSRQ:'+p[i].ServingRSRQ+'</p><p>eNBRxPow:'+p[i].ENBReceivedPower+'</p>' +
+                                '<p>UL SINR:'+p[i].ULSINR+'</p></div>',
+                            _gis_layer_id:'mark',
+                            ServingRSRP:p[i].ServingRSRP,
+                            MrType:p[i].MrType,
+                            ServingRSRQ:p[i].ServingRSRQ,
+                            measureTime:p[i].measureTime,
+                            color:p[i].color,
+                            time:p[i].time,
+                            ULSINR:p[i].ULSINR,
+                            CELLID:p[i].CELLID,
+                            ENBReceivedPower:p[i].ENBReceivedPower
+                        });
+                    }
+                    return temp;
+                }else if(t == 1){
+                    var temp = [];
+                    for(var i = 0 ; i <p.length;i++){
+                        var dt = p[i].Event==''?[]:p[i].Event.substring(1).split('-');
+                        temp.push({
+                            id:'src' + '-' + 'Up' +'-'+p[i].Slice_XDR_ID,
+                            x:p[i].Longitude-0.00003,
+                            y:p[i].Latitude+0.00004,
+                            source:iconPath+ (dt.length==1?(dt[0]+'_ul.png'):(dt[0]+'_ul_more.png')),
+                            _gis_layer_id:'event',
+                            Event:p[i].Event,
+                            time:p[i].time,
+                            Slice_XDR_ID:p[i].Slice_XDR_ID
+                        });
+                    }
+                    return temp;
+                }else if(t == 2){
+                    var temp = [];
+                    for(var i = 0 ; i <p.length;i++){
+                        var dt = p[i].Event==''?[]:p[i].Event.substring(1).split('-');
+                        temp.push({
+                            id:'src' + '-' + 'Down' +'-'+p[i].Slice_XDR_ID,
+                            x:p[i].Longitude+0.00003,
+                            y:p[i].Latitude+0.00004,
+                            source:iconPath+ (dt.length==1?(dt[0]+'_dl.png'):(dt[0]+'_dl_more.png')),
+                            _gis_layer_id:'event',
+                            Event:p[i].Event,
+                            time:p[i].time,
+                            Slice_XDR_ID:p[i].Slice_XDR_ID
+                        });
+                    }
+                    return temp;
+                }else if(t == 3){
+                    var temp = [];
+                    for(var i = 0 ; i <p.length;i++){
+                        temp.push({
+                            id:'dest' + '-' + 'Mark' +'-'+parseInt(Math.random()*10000),
+                            x:p[i].Longitude,
+                            y:p[i].Latitude,
+                            source:iconPath+'c'+p[i].color+'.png',
+                            _gis_layer_id:'mark',
+                            ServingRSRP:p[i].ServingRSRP,
+                            MrType:p[i].MrType,
+                            ServingRSRQ:p[i].ServingRSRQ,
+                            measureTime:p[i].measureTime,
+                            color:p[i].color,
+                            time:p[i].time,
+                            ULSINR:p[i].ULSINR,
+                            CELLID:p[i].CELLID,
+                            ENBReceivedPower:p[i].ENBReceivedPower
+                        });
+                    }
+                    return temp;
+                }else if(t == 4){
+                    var temp = [];
+                    for(var i = 0 ; i <p.length;i++){
+                        var dt = p[i].Event==''?[]:p[i].Event.substring(1).split('-');
+                        temp.push({
+                            id:'dest' + '-' + 'Up' +'-'+p[i].Slice_XDR_ID,
+                            x:p[i].Longitude,
+                            y:p[i].Latitude,
+                            source:iconPath+ (dt.length==1?(dt[0]+'_ul.png'):(dt[0]+'_ul_more.png')),
+                            _gis_layer_id:'event',
+                            Event:p[i].Event,
+                            time:p[i].time,
+                            Slice_XDR_ID:p[i].Slice_XDR_ID
+                        });
+                    }
+                    return temp;
+                }else if(t == 5){
+                    var temp = [];
+                    for(var i = 0 ; i <p.length;i++){
+                        var dt = p[i].Event==''?[]:p[i].Event.substring(1).split('-');
+                        temp.push({
+                            id:'dest' + '-' + 'Down' +'-'+p[i].Slice_XDR_ID,
+                            x:p[i].Longitude,
+                            y:p[i].Latitude,
+                            source:iconPath+ (dt.length==1?(dt[0]+'_dl.png'):(dt[0]+'_dl_more.png')),
+                            _gis_layer_id:'event',
+                            Event:p[i].Event,
+                            time:p[i].time,
+                            Slice_XDR_ID:p[i].Slice_XDR_ID
+                        });
+                    }
+                    return temp;
+                }
+
+            };
+            return function(){
+                mpoints = [];
+                uppoints = [];
+                downpoints = [];
+                if(type_){
+                    mpoints = generatePoints(points_.srcMark,0);
+                    uppoints = generatePoints(points_.srcUp,1);
+                    downpoints = generatePoints(points_.srcDown,2);
+                }else{
+                    mpoints = generatePoints(points_.destMark,3);
+                    uppoints = generatePoints(points_.destUp,4);
+                    downpoints = generatePoints(points_.destDown,5);
+                }
+            }
+        }
+
+        //初始化Gis实例的函数
+        function initGis(style,option,callback,callEvOpen){
+            iconPath = option.host + '/resource/images/mapicon/';
+            //样式初始化
+            $('html,body,#gis001DIV').css('height',style.height);
+            $('html,body,#gis001DIV').css('width',style.width);
+            setTimeout(function(){
+                $('#gis001DIV').css('height',document.body.height);
+                $('#gis001DIV').css('width',document.body.width);},100)
+
+            //构造Gis实例
+            gis001 = new Gis(option.appCode);
+            //设置云Gis显示中件要显示的地方,表示该Gis实例要显示在id为'gis001DIV'的矩形区域里
+            gis001.divID = 'gis001DIV';
+            //设置Gis实例的高度
+            gis001.height = '100%';
+            //设置Gis实例的宽度
+            gis001.width = '100%';
+            //设置地图的显示级别
+            gis001.level = option.level;
+            //设置地图中心点的地市
+            gis001.districtName = option.districtName;
+            //设置回调函数名
+            gis001.mapLoadListenerFunctionName = 'initGisOver';
+            //设置回调函数
+            initGisOver  = callback;
+            callEventOpen = callEvOpen;
+            //调用该函数初始化Gis实例
+            gis001.init();
+
+        };
+
+        var afterinit = function(){
+            gis001.addMapEventListener(gis001.MapEvent_PointMarkerClick,
+                    'onPointMarkerClicked');
+        }
+        function addPointsToMap() {
+            return function(){
+                //copy points
+                var _mpoints = mpoints.length == 0 ?[]:mpoints.slice(0,mpoints.length+1);
+                var _uppoints = uppoints.length == 0 ?[]:uppoints.slice(0,uppoints.length+1);
+                var _downpoints = downpoints.length == 0 ?[]:downpoints.slice(0,downpoints.length+1);
+                gis001.clearPointMarkers();
+                if(_mpoints.length<=0 && _uppoints.length<=0 && _downpoints.length<=0 ) return;
+
+                var ceneterPoint = _mpoints[0] || _uppoints[0] ||_downpoints[0];
+                gis001.setMapLevel(16);
+                //设置地图中心
+                gis001.setMapCenter ({x:ceneterPoint.x, y :ceneterPoint.y});
+
+                //调用Gis实例的函数在地图上添加点
+                try{
+                    gis001.addPointMarkers(_uppoints);
+                    gis001.addPointMarkers(_downpoints);
+                    setTimeout(function(){gis001.addPointMarkers(_mpoints);},100);
+
+
+                }catch (e){
+
+                }
+            }
+        };
+        /**
+         * 图标点击方法
+         * @param o
+         */
+        function onPointMarkerClicked(o){
+            var _type = o.id.split('-')[1];
+            var _id = o.id.split('-')[2];
+            if(_type=='Mark'){
+            }else{
+                if(_type == 'Up'){
+                    callEventOpen(_id,'ul');
+                }else if(_type =='Down'){
+                    callEventOpen(_id,'dl');
+                }
+            }
+        }
+        function asyncMapTimer(option){
+
+            //先截取需要播放的点
+            var _mpoints = [];
+            var _uppoints = [];
+            var _downpoints = [];
+            for(var i = 0 ; i <mpoints.length; i ++){
+                if(mpoints[i].time<=option.now){
+                    _mpoints.push(mpoints[i]);
+                }
+            }
+            for(var i = 0 ; i <uppoints.length; i ++){
+                if(uppoints[i].time<=option.now){
+                    _uppoints.push(uppoints[i]);
+                }
+            }
+            for(var i = 0 ; i <downpoints.length; i ++){
+                if(downpoints[i].time<=option.now){
+                    _downpoints.push(downpoints[i]);
+                }
+            }
+            //清空点
+            gis001.clearPointMarkers();
+            //获取最后的那个时间点
+            var lastPoint = null;
+            var p1 = _mpoints.length>0?_mpoints[_mpoints.length-1]:null;
+            var p2 = _uppoints.length>0?_uppoints[_uppoints.length-1]:null;
+            var p3 = _downpoints.length>0?_downpoints[_downpoints.length-1]:null;
+            if(p1||p2||p3){
+                var _t = [];
+                if(p1)_t.push(p1);
+                if(p2)_t.push(p2);
+                if(p3)_t.push(p3);
+                if(_t.length>0){
+                    _t.sort(function(a,b){
+                       return a.time - b.time;
+                    });
+                    lastPoint = _t[_t.length-1];
+                }
+            }
+            //lastPoint == null 时，没有可打印的点
+            if(!lastPoint){return;}
+            else{
+                //开始打印点
+                if(_uppoints.length>0)gis001.addPointMarkers(_uppoints);
+                if(_downpoints.length>0)gis001.addPointMarkers(_downpoints);
+                setTimeout(function(){if(_mpoints.length>0)gis001.addPointMarkers(_mpoints);},100);
+                //gis001.setMapLevel(16);
+                gis001.setMapCenter ({x:lastPoint.x, y :lastPoint.y});
+
+
+            }
+        }
+
+        //定义公开接口
+         window.apis = {
+            init:function(style,option,callback,callEvOpen){initGis(style,option,callback,callEvOpen);},
+             afterinit:function(){afterinit()},
+            updatePoints:function(points,type){savePoints(points,type)();addPointsToMap()();},
+             asyncMapTimer:function(option){asyncMapTimer(option);}
+        }
+    </script>
+</head>
+<body >
+<!-- 云Gis中间件要显示位置 -->
+<div id='gis001DIV' style="width: 100%;height: 100%;">
+
+</div>
+
+</body>
+</html>

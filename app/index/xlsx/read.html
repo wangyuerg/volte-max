@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="gbk">
+    <title>Title</title>
+</head>
+<script src="./js/ods.js"></script>
+<script src="./js/jszip.js"></script>
+<script src="./js/xlsx.js"></script>
+<script src="./js/papaparse.min.js"></script>
+<script src="./js/jschardet.js"></script>
+<body>
+<div>
+</div>
+</body>
+</html>
+<script>
+
+    window.apis = {
+
+      init:function(){},
+        getHelper:function(){
+            while(XLSX && Papa &&jschardet){
+                var reader = new FileReader();
+                var _XLSX = XLSX;
+                return{
+                    reader:reader,
+                    XLSX:_XLSX,
+                    Papa:Papa,
+                    jschardet:jschardet
+                }
+            }
+        }
+    };
+</script>
