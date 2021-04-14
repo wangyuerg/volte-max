@@ -32,12 +32,11 @@ config.plugins = [
 ];
 
 // 动态向入口配置中注入 webpack-hot-middleware/client
-// var devClient = './build/dev-client';
-// Object.keys(config.entry).forEach(function (name, i) {
-//     var extras = [devClient]
-//     config.entry[name] = extras.concat(config.entry[name])
-// })
+var devClient = './build/dev-client';
+Object.keys(config.entry).forEach(function (name, i) {
+    var extras = [devClient]
+    config.entry[name] = extras.concat(config.entry[name])
+})
 
-console.log(config)
 
 module.exports = config;

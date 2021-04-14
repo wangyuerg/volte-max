@@ -263,6 +263,7 @@
     module.exports ={
         created:function(){
             console.log(base.webHost)
+            console.log('userrevew', base.projectType, base.const)
             //组件初始化时调用
             //初始化组件全局变量
             currentUser = base.getCurrentUser();
@@ -911,3 +912,8 @@
     }
 </script>
 
+<style>
+.content .wd-caruosel-container {
+    z-index: 1!important;
+}
+</style>

@@ -63,7 +63,12 @@ module.exports = {
             // 使用vue-loader 加载 .vue 结尾的文件
             {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue',
+                // options: {
+                //     loaders: {
+                //       scss: 'style!css!sass'
+                //     }
+                //   }
             },
             { test: /\.css$/,
                 exclude: /\.useable\.css$/,
@@ -71,8 +76,8 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: "style!css!sass"
-             },
+                loader: ['style-loader', 'css-loader', 'sass-loader']
+            },
             {
                 test: /\.js$/,
                 loader: 'babel',
@@ -95,7 +100,7 @@ module.exports = {
             {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
             {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"}*/
-        ]
+        ],
     },
     babel: {
         presets: ['es2015'],

@@ -1,4 +1,6 @@
 <script>
+    import { project, volte, video } from './assets/const'
+
     var host,curWwwPath,pathName,pos,localhostPath,webHost;
     host = "http://10.154.4.3:8080";
     webHost = 'http://localhost:8080';
@@ -11,6 +13,14 @@
     pos=curWwwPath.indexOf(pathName);
     //获取主机地址，如： http://localhost:8080
     localhostPath=curWwwPath.substring(0,pos);
+    const currentProject = project.video; //设置视频还是语音项目
+    let currentConst;
+
+    if (currentProject === project.video) {
+        currentConst = video
+    } else {
+        currentConst = volte
+    }
 
     if( process.env.NODE_ENV == 'production'){
         //正式环境
@@ -21,6 +31,7 @@
         webHost = 'http://localhost:8080';
         console.info(webHost)
     }
+    console.log('currentConst in config', currentConst)
 
     //host = localhostPath;
     //此组件用于保存常量信息
@@ -29,6 +40,8 @@
         webHost:webHost,//前端服务器ip port
         serviceUrl:host+"/voltemax-service/cxf/jaxrs",//后端服务接口地址
         resUrl:host+"/resource/",//前端资源文件路径
+        projectType: currentProject,
+        const: currentConst,
         saveCurrentUser:function(user){
             sessionStorage.setItem('user',JSON.stringify(user));
             sessionStorage.setItem('token',user.token);
