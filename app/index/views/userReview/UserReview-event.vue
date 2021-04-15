@@ -273,6 +273,7 @@
                     .then(function(response){
                         if(response.data.status =='success'){
                             that.eventData = response.data.data;
+                            console.log('hhh')
                             layer.close(loading_index);
                             that.$nextTick();
 
@@ -300,9 +301,11 @@
 
 
                         }else{
+                            console.log('fail')
                             layer.close(loading_index);
                         }
                     },function(){
+                        console.log('2')
                         layer.close(loading_index);
                     });
         },

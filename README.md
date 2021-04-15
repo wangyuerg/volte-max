@@ -37,9 +37,10 @@ nodejs
 兼容IE9+ 以及其他主流浏览器
 
 # 开发启动服务
-node build/dev-server.js
+npm run dev
 # 打包指令
 npm run build
+
 
 
 

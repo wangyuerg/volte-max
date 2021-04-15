@@ -1,5 +1,6 @@
 <script>
     import { project, volte, video } from './assets/const'
+    import resVolte from './mock/resVolte'
 
     var host,curWwwPath,pathName,pos,localhostPath,webHost;
     host = "http://10.154.4.3:8080";
@@ -14,12 +15,15 @@
     //获取主机地址，如： http://localhost:8080
     localhostPath=curWwwPath.substring(0,pos);
     const currentProject = project.video; //设置视频还是语音项目
-    let currentConst;
+    let currentConst; // 项目变量,项目不同变量不同
+    let currentMockRes; // 项目mock数据源，项目不同源不同
 
     if (currentProject === project.video) {
         currentConst = video
+        currentMockRes = resVolte // 以后有视频了替换成视频
     } else {
         currentConst = volte
+        currentMockRes = volte
     }
 
     if( process.env.NODE_ENV == 'production'){
@@ -42,6 +46,7 @@
         resUrl:host+"/resource/",//前端资源文件路径
         projectType: currentProject,
         const: currentConst,
+        mockRes: currentMockRes,
         saveCurrentUser:function(user){
             sessionStorage.setItem('user',JSON.stringify(user));
             sessionStorage.setItem('token',user.token);

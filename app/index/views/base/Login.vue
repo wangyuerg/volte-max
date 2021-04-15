@@ -3,7 +3,7 @@
 
         <div class="header">
             <div  class="logo-login"><img src="../../images/mobilelogo.png" /></div>
-            <div class="name">VoLTE MAX应用系统</div>
+            <div class="name">VoLTE MAX应用系统 </div>
         </div>
 
         <div class="main-wrap row">
@@ -96,6 +96,7 @@
                                 function(response){
                                     if(response.data.status=='success'){
                                         base.saveCurrentUser(response.data.data);
+
                                         var accessMenu = access.getAccessMenu();
                                         if(accessMenu.length>0){
                                             that.$router.push(accessMenu[0].path);

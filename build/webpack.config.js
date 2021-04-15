@@ -11,6 +11,23 @@ module.exports = {
         vendors:['jquery','echarts','element-ui']
     },
     context: path.resolve('./'),
+    devServer: {
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true,
+        port: 8888,
+        host: '127.0.0.1',
+        quiet: false,
+        noInfo: false,
+        // proxy: {
+        //     '/voltemax-service': {
+        //         target: 'http://localhost:8080',
+        //         changeOrigin: true,
+        //         secure: false
+        //     }
+        // }
+     },
 
     // 输出配置
     output: {
@@ -90,6 +107,10 @@ module.exports = {
                     limit: 50000,
                     name: '[name].[ext]?[hash:7]'
                 }
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,

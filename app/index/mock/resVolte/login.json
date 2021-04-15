@@ -1,0 +1,11 @@
+{
+    "data": {
+        "roleId": "1",
+        "userName": "admin",
+        "exp": 161829095,
+        "userId": "1",
+        "token": "eyhdjshdkjahdjksdkjashdjkashjdashkdjhsadhaskdhjkshdka"
+    },
+    "status": "success",
+    "msg": "登陆成功"
+}

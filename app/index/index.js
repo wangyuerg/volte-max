@@ -13,6 +13,7 @@ import access from './access.vue'
 
 require('gui.css');
 require('gui');
+require('./mock/mock')
 
 import Element from 'element-ui'
 Vue.use(Element);
