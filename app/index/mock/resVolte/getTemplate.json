@@ -1,0 +1,41 @@
+    {
+        "data": [{
+            "sqlJson": {
+                "timeType": "小时",
+                "startTime": "2020-05-27 00:00:00",
+                "endTime": "2020-05-27 23:59:59",
+                "networkType": "小区",
+                "networkName": ["100698626", "100719106"],
+                "indexType": "全部",
+                "indexName": ["Session_ID_Count", "Session_Keep_Time", "Worse_Quality_Count", "Worse_Quality_Time", "Single_Pass_Num", "KQI_MOS", "Worse_Quality_Time_Rate", "Worse_Quality_Count_Rate", "Single_Pass_Num_Rate", "KQI_MOS_Rate", "RTP_Packet_Num", "RTP_Packet_Loss_Num", "RTP_Packet_Loss_Num_Rate", "RTP_Interarrival_jitter", "RTCP_Expect_Packet_Num", "RTCP_Packet_Loss_Num", "RTCP_Packet_Loss_Num_Rate", "RTCP_InterArrivalJitter", "RTCP_RingDelay", "KQI_Worse_MOS_time", "KQI_Loss_Word_time", "KQI_Intermittently_time", "KQI_Delay_time", "KQI_Single_Pass_time", "KQI_TC_Num"]
+            },
+            "templateName": "eci0529",
+            "id": 38
+        }, {
+            "sqlJson": {
+                "timeType": "15分钟",
+                "startTime": "2020-05-26 15:09:12",
+                "endTime": "2020-05-27 09:48:59",
+                "networkType": "地市",
+                "networkName": ["杭州"],
+                "indexType": "全部",
+                "indexName": ["Session_Keep_Time"]
+            },
+            "templateName": "0526-0527",
+            "id": 37
+        }, {
+            "sqlJson": {
+                "timeType": "小时",
+                "startTime": "2019-05-11 17:27:01",
+                "endTime": "2019-05-15 17:25:51",
+                "networkType": "小区",
+                "networkName": ["湖州"],
+                "indexType": "全部",
+                "indexName": ["Session_ID_Count", "Session_Keep_Time", "Worse_Quality_Count", "Worse_Quality_Time", "Single_Pass_Num", "KQI_MOS", "Worse_Quality_Time_Rate", "Worse_Quality_Count_Rate", "Single_Pass_Num_Rate", "KQI_MOS_Rate", "RTP_Packet_Num", "RTP_Packet_Loss_Num", "RTP_Packet_Loss_Num_Rate", "RTP_Interarrival_jitter", "RTCP_Expect_Packet_Num", "RTCP_Packet_Loss_Num", "RTCP_Packet_Loss_Num_Rate", "RTCP_InterArrivalJitter", "RTCP_RingDelay", "KQI_Worse_MOS_time", "KQI_Loss_Word_time", "KQI_Intermittently_time", "KQI_Delay_time", "KQI_Single_Pass_time", "KQI_TC_Num"]
+            },
+            "templateName": "浙江",
+            "id": 35
+        }],
+        "status": "success",
+        "msg": "查询成功"
+    }

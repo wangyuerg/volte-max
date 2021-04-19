@@ -1,0 +1,14 @@
+{
+    "data": {
+        "maps": {
+            "destMark": [],
+            "destUp": [],
+            "srcUp": [],
+            "srcMark": [],
+            "srcDown": [],
+            "destDown": []
+        }
+    },
+    "status": "success",
+    "msg": "查询成功"
+}

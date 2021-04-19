@@ -1,0 +1,13 @@
+{
+    "data": {
+        "userId": 1,
+        "redMax": 100.0,
+        "redMin": 35.0,
+        "yellowMax": 35.0,
+        "yellowMin": 15.0,
+        "greenMax": 15.0,
+        "greenMin": 0.0
+    },
+    "status": "success",
+    "msg": "查询成功"
+}

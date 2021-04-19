@@ -330,8 +330,6 @@
             return{
                 //图表点击回调方法
                 clickfn:function(param){
-                    console.log('click')
-                    console.log(param)
                     // 没有图标
                     if(!param.data.symbol) {
                         console.log('图标获取失败')

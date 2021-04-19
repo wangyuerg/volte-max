@@ -222,7 +222,8 @@
                       :sessionEndTime="eventsWindow[0].sessionEndTime"
                       :destMsisdn="eventsWindow[0].destMsisdn"
                       :esessionId="currentSessionId"
-                      v-if="isLayerOpen"></event-window>
+                      v-if="isLayerOpen"
+                      @closeEvent="closeEvent"></event-window>
         <search-limit :keyword="searchCondition.keyword" :isOpen.sync="isOpen" ></search-limit>
     </div>
 
@@ -262,8 +263,6 @@
 
     module.exports ={
         created:function(){
-            console.log(base.webHost)
-            console.log('userrevew', base.projectType, base.const)
             //组件初始化时调用
             //初始化组件全局变量
             currentUser = base.getCurrentUser();
@@ -285,6 +284,9 @@
             "nicescroll":niceScroll
         },
         methods:{
+            closeEvent (openStatus) {
+                this.isLayerOpen = openStatus
+            },
             tableWidth (item) {
                 const itemTitle = item.substring(0,item.length);
                 let itemContent = ''

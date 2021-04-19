@@ -1,0 +1,24 @@
+{
+    "data": {
+        "level": {
+            "destServingRSRP": [],
+            "srcServingRSRP": [],
+            "srcMrType": [],
+            "destServingRSRQ": [],
+            "destMeasureTime": [],
+            "srcServingRSRQ": [],
+            "srcCELLID": [],
+            "destCELLID": [],
+            "destENBReceivedPower": [],
+            "destULSINR": [],
+            "srcMeasureTime": [],
+            "srcENBReceivedPower": [],
+            "srcULSINR": [],
+            "destMrType": [],
+            "destTime": [],
+            "srcTime": []
+        }
+    },
+    "status": "success",
+    "msg": "查询成功"
+}

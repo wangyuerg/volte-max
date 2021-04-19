@@ -1,0 +1,428 @@
+{
+    "data": [{
+        "columnCode": "Session_Start_Time",
+        "columnName": "开始时间",
+        "columnOption": 2,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "开始时间",
+            "displayCode": "Session_Start_Time"
+        }]
+    }, {
+        "columnCode": "Session_End_Time",
+        "columnName": "结束时间",
+        "columnOption": 2,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "结束时间",
+            "displayCode": "Session_End_Time"
+        }]
+    }, {
+        "columnCode": "Session_Keep_Time",
+        "columnName": "通话时长",
+        "columnOption": 2,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "通话时长（s）",
+            "displayCode": "Session_Keep_Time"
+        }]
+    }, {
+        "columnCode": "MSISDN_Dest",
+        "columnName": "对端号码",
+        "columnOption": 2,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "对端号码",
+            "displayCode": "MSISDN_Dest"
+        }]
+    }, {
+        "columnCode": "User_Type",
+        "columnName": "主被叫标识",
+        "columnOption": 2,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "主被叫标识",
+            "displayCode": "User_Type"
+        }]
+    }, {
+        "columnCode": "Local_City",
+        "columnName": "城市",
+        "columnOption": 2,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "城市",
+            "displayCode": "Local_City"
+        }]
+    }, {
+        "columnCode": "Service_Type",
+        "columnName": "业务类型",
+        "columnOption": 1,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "业务类型",
+            "displayCode": "ServiceType"
+        }]
+    }, {
+        "columnCode": "Call_Type",
+        "columnName": "网络类型",
+        "columnOption": 1,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "网络类型",
+            "displayCode": "Call_Type"
+        }]
+    }, {
+        "columnCode": "Session_ID",
+        "columnName": "会话ID",
+        "columnOption": 1,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "会话ID",
+            "displayCode": "Session_ID"
+        }]
+    }, {
+        "columnCode": "Start_ECI_Src",
+        "columnName": "源端开始小区",
+        "columnOption": 1,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "源端开始小区",
+            "displayCode": "Start_ECI_Src"
+        }]
+    }, {
+        "columnCode": "End_ECI_Src",
+        "columnName": "源端结束小区",
+        "columnOption": 1,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "源端结束小区",
+            "displayCode": "End_ECI_Src"
+        }]
+    }, {
+        "columnCode": "Start_ECI_Dest",
+        "columnName": "对端开始小区",
+        "columnOption": 0,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "对端开始小区",
+            "displayCode": "Start_ECI_Dest"
+        }]
+    }, {
+        "columnCode": "End_ECI_Dest",
+        "columnName": "对端结束小区",
+        "columnOption": 0,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "对端结束小区",
+            "displayCode": "End_ECI_Dest"
+        }]
+    }, {
+        "columnCode": "Worse_Quality_Time",
+        "columnName": "质差通话时长",
+        "columnOption": 1,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "上行质差通话时长（s）",
+            "displayCode": "Worse_Quality_Time_UL"
+        }, {
+            "displayName": "下行质差通话时长（s）",
+            "displayCode": "Worse_Quality_Time_DL"
+        }]
+    }, {
+        "columnCode": "KQI_DropCall",
+        "columnName": "掉线事件",
+        "columnOption": 1,
+        "qualityFlag": 0,
+        "columnList": [{
+            "displayName": "掉线事件",
+            "displayCode": "KQI_DropCall"
+        }]
+    }, {
+        "columnCode": "Codec_Rate",
+        "columnName": "编码速率",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行编码速率（kbps）",
+            "displayCode": "Codec_Rate_UL"
+        }, {
+            "displayName": "下行编码速率（kbps）",
+            "displayCode": "Codec_Rate_DL"
+        }]
+    }, {
+        "columnCode": "KQI_MOS",
+        "columnName": "MOS",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行MOS",
+            "displayCode": "KQI_MOS_UL"
+        }, {
+            "displayName": "下行MOS",
+            "displayCode": "KQI_MOS_DL"
+        }]
+    }, {
+        "columnCode": "RTCP_Expect_Packet_Num",
+        "columnName": "RTCP期望包数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTCP期望包数",
+            "displayCode": "RTCP_Expect_Packet_Num_UL"
+        }, {
+            "displayName": "下行RTCP期望包数",
+            "displayCode": "RTCP_Expect_Packet_Num_DL"
+        }]
+    }, {
+        "columnCode": "RTCP_Packet_Loss_Num",
+        "columnName": "RTCP累计丢包数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTCP丢包数",
+            "displayCode": "RTCP_Packet_Loss_Num_UL"
+        }, {
+            "displayName": "下行RTCP丢包数",
+            "displayCode": "RTCP_Packet_Loss_Num_DL"
+        }]
+    }, {
+        "columnCode": "RTCP_Packet_Loss_Rate",
+        "columnName": "RTCP丢包率",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTCP丢包率（%）",
+            "displayCode": "RTCP_Packet_Loss_Rate_UL"
+        }, {
+            "displayName": "下行RTCP丢包率（%）",
+            "displayCode": "RTCP_Packet_Loss_Rate_DL"
+        }]
+    }, {
+        "columnCode": "RTCP_InterArrival_Jitter",
+        "columnName": "RTCP包间抖动",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTCP包间抖动（ms）",
+            "displayCode": "RTCP_InterArrival_Jitter_UL"
+        }, {
+            "displayName": "下行RTCP包间抖动（ms）",
+            "displayCode": "RTCP_InterArrival_Jitter_DL"
+        }]
+    }, {
+        "columnCode": "RTCP_RingDelay",
+        "columnName": "RTCP环路时延",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "RTCP环路时延（ms）",
+            "displayCode": "RTCP_RingDelay"
+        }]
+    }, {
+        "columnCode": "RTP_Packet_Loss_Num",
+        "columnName": "RTP丢包数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTP丢包数",
+            "displayCode": "RTP_Packet_Loss_Num_UL"
+        }, {
+            "displayName": "下行RTP丢包数",
+            "displayCode": "RTP_Packet_Loss_Num_DL"
+        }]
+    }, {
+        "columnCode": "RTP_Packet_Num",
+        "columnName": "RTP预期包数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTP预期包数",
+            "displayCode": "RTP_Expect_Packet_Num_UL"
+        }, {
+            "displayName": "下行RTP预期包数",
+            "displayCode": "RTP_Expect_Packet_Num_DL"
+        }]
+    }, {
+        "columnCode": "RTP_Packet_Loss_Rate",
+        "columnName": "RTP丢包率",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTP丢包率（%）",
+            "displayCode": "RTP_Packet_Loss_Rate_UL"
+        }, {
+            "displayName": "下行RTP丢包率（%）",
+            "displayCode": "RTP_Packet_Loss_Rate_DL"
+        }]
+    }, {
+        "columnCode": "rtp_relative_delay_avg",
+        "columnName": "RTP相对时延",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTP相对时延（ms）",
+            "displayCode": "rtp_relative_delay_avg_ul"
+        }, {
+            "displayName": "下行RTP相对时延（ms）",
+            "displayCode": "rtp_relative_delay_avg_dl"
+        }]
+    }, {
+        "columnCode": "RTP_Consecutive_Loss_Num",
+        "columnName": "RTP最大连续丢包数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTP最大连续丢包数",
+            "displayCode": "RTP_Consecutive_Loss_Num_UL"
+        }, {
+            "displayName": "下行RTP最大连续丢包数",
+            "displayCode": "RTP_Consecutive_Loss_Num_DL"
+        }]
+    }, {
+        "columnCode": "Total_Slice_Count",
+        "columnName": "切片数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行切片数",
+            "displayCode": "Total_Slice_Count_UL"
+        }, {
+            "displayName": "下行切片数",
+            "displayCode": "Total_Slice_Count_DL"
+        }]
+    }, {
+        "columnCode": "Abnormal_Slice_Count",
+        "columnName": "异常切片数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行异异常切片数",
+            "displayCode": "Abnormal_Slice_Count_UL"
+        }, {
+            "displayName": "下行异常切片数",
+            "displayCode": "Abnormal_Slice_Count_DL"
+        }]
+    }, {
+        "columnCode": "KQI_Single_Pass_Num",
+        "columnName": "单通次数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行单通次数",
+            "displayCode": "KQI_Single_Pass_Num_UL"
+        }, {
+            "displayName": "下行单通次数",
+            "displayCode": "KQI_Single_Pass_Num_DL"
+        }]
+    }, {
+        "columnCode": "KQI_Loss_Word_Num",
+        "columnName": "吞字次数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行吞字次数",
+            "displayCode": "KQI_Loss_Word_Num_UL"
+        }, {
+            "displayName": "下行吞字次数",
+            "displayCode": "KQI_Loss_Word_Num_DL"
+        }]
+    }, {
+        "columnCode": "KQI_Intermittently_Num",
+        "columnName": "断续次数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行断续次数",
+            "displayCode": "KQI_Intermittently_Num_UL"
+        }, {
+            "displayName": "下行断续次数",
+            "displayCode": "KQI_Intermittently_Num_DL"
+        }]
+    }, {
+        "columnCode": "KQI_Worse_Quality_Num",
+        "columnName": "质差次数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行MOS质差次数",
+            "displayCode": "KQI_Worse_Quality_Num_UL"
+        }, {
+            "displayName": "下行MOS质差次数",
+            "displayCode": "KQI_Worse_Quality_Num_DL"
+        }]
+    }, {
+        "columnCode": "KQI_Delay_Num",
+        "columnName": "延时次数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行延时次数",
+            "displayCode": "KQI_Delay_Num_UL"
+        }, {
+            "displayName": "下行延时次数",
+            "displayCode": "KQI_Delay_Num_DL"
+        }]
+    }, {
+        "columnCode": "KQI_Jittering_Num",
+        "columnName": "抖动次数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行抖动次数",
+            "displayCode": "KQI_Jittering_Num_UL"
+        }, {
+            "displayName": "下行抖动次数",
+            "displayCode": "KQI_Jittering_Num_DL"
+        }]
+    }, {
+        "columnCode": "KQI_TC_Num",
+        "columnName": "码率调整次数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行码率调整次数",
+            "displayCode": "KQI_TC_Num_UL"
+        }, {
+            "displayName": "下行码率调整次数",
+            "displayCode": "KQI_TC_Num_DL"
+        }]
+    }, {
+        "columnCode": "IntraRAT_HO_Num",
+        "columnName": "系统内切换次数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "源端系统内切换次数",
+            "displayCode": "IntraRAT_HO_Num_Src"
+        }, {
+            "displayName": "对端系统内切换次数",
+            "displayCode": "IntraRAT_HO_Num_Dest"
+        }]
+    }, {
+        "columnCode": "InterRAT_HO_Num",
+        "columnName": "系统间切换次数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "源端系统间切换次数",
+            "displayCode": "InterRAT_HO_Num_Src"
+        }, {
+            "displayName": "对端系统间切换次数",
+            "displayCode": "InterRAT_HO_Num_Dest"
+        }]
+    }, {
+        "columnCode": "rtp_packet_actual",
+        "columnName": "RTP实际包数",
+        "columnOption": 1,
+        "qualityFlag": 1,
+        "columnList": [{
+            "displayName": "上行RTP实际包数",
+            "displayCode": "rtp_packet_actual_ul"
+        }, {
+            "displayName": "下行RTP实际包数",
+            "displayCode": "rtp_packet_actual_dl"
+        }]
+    }],
+    "status": "success",
+    "msg": "查询成功"
+}

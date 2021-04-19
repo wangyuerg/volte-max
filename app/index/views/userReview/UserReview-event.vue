@@ -273,7 +273,6 @@
                     .then(function(response){
                         if(response.data.status =='success'){
                             that.eventData = response.data.data;
-                            console.log('hhh')
                             layer.close(loading_index);
                             that.$nextTick();
 
@@ -297,16 +296,15 @@
                                     $('#abnormal').removeClass('temphideclass');
                                 }
 
-
-
-
                         }else{
-                            console.log('fail')
                             layer.close(loading_index);
+                            // 失败后要把该组件关了，要不然第二次怎无法开该组件重新执行create方法重新发请求
+                            that.$emit("closeEvent", false);
                         }
                     },function(){
-                        console.log('2')
                         layer.close(loading_index);
+                        // 失败后要把该组件关了，要不然第二次怎无法开该组件重新执行create方法重新发请求
+                        that.$emit("closeEvent", false);
                     });
         },
 

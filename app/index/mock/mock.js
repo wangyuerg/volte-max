@@ -11,7 +11,7 @@ for (let item in route) {
     Mock.mock(route[item], (req, res) => {//当post或get请求到/api/data路由时Mock会拦截请求并返回上面的数据
         const response = config.mockRes[item]
         console.log('-----------', item , '拦截响应成功')
-        // console.log(config.mockRes[item]) // 打印出响应内容
+        console.log(config.mockRes[item]) // 打印出响应内容
         return response
     })
 }

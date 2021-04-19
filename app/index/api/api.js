@@ -289,7 +289,6 @@ const api = {
              */
             //质差小区查询
             ca_formQuality:(pageNum,pageSize,searchCondition)=>{
-
                 if(searchCondition.timeType ==='date'){
                     searchCondition.Start_Time = searchCondition.Start_Time instanceof Date?searchCondition.Start_Time.format('yyyy-MM-dd'):"";
                     searchCondition.End_Time = searchCondition.End_Time instanceof Date?searchCondition.End_Time.format('yyyy-MM-dd'):"";
@@ -491,7 +490,6 @@ const httpWarningHandler = {
             lastModal:null
         };
         app.$root.eventHub.$on('httpWarning', function(option){
-            if(m.lastType != option.type){
                 m.lastType = option.type;
                 if(option.type == 10000){
                     if(app.$route.name != 'login' && app.$route.name != 'void'){
@@ -516,9 +514,6 @@ const httpWarningHandler = {
                         m.lastModal = modal;
                     }
                 }
-
-
-            }
 
         });
     }

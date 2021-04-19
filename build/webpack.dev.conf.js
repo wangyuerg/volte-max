@@ -6,14 +6,25 @@ var config = require('./webpack.config');
 
 config.output.publicPath = '/';
 
+let env = process.argv[2]
+let envName
+
+if (env === 'mock') {
+    envName = {
+        NODE_ENV: '"mock"'
+    }
+} else {
+    envName = {
+        NODE_ENV: '"development"'
+    }
+}
+
 config.plugins = [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-        'process.env': {
-            NODE_ENV: '"development"'
-        }
+        'process.env': envName
     }),
     new HtmlWebpackPlugin({
         filename: 'index.html',

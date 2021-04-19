@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --display-modules --display-chunks --config build/webpack.prod.conf.js",
     "dev": "node ./build/dev-server.js",
+    "mock": "node ./build/dev-server.js mock",
     "start": "node_modules/.bin/webpack-dev-server --open --config build/webpack.dev.conf.js"
   },
   "repository": {

@@ -25,7 +25,7 @@
         currentConst = volte
         currentMockRes = volte
     }
-
+    console.log('dsadsad', process.env.NODE_ENV)
     if( process.env.NODE_ENV == 'production'){
         //正式环境
         host = localhostPath;
@@ -33,6 +33,7 @@
     }else{
         //开发环境
         webHost = 'http://localhost:8080';
+        host = 'http://localhost:8080';
         console.info(webHost)
     }
     console.log('currentConst in config', currentConst)

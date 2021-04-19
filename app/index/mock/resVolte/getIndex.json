@@ -1,0 +1,17 @@
+{
+    "data": {
+        "index": {
+            "score": 3.3,
+            "lossword": 0,
+            "disconnect": 0,
+            "offline": 0,
+            "delay": 0,
+            "singlepass": 0,
+            "changeover": 6,
+            "lowquality": 0,
+            "TC": 0
+        }
+    },
+    "status": "success",
+    "msg": "查询成功"
+}

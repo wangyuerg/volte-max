@@ -13,7 +13,10 @@ import access from './access.vue'
 
 require('gui.css');
 require('gui');
-require('./mock/mock')
+
+if (process.env.NODE_ENV === 'mock') {
+    require('./mock/mock')
+}
 
 import Element from 'element-ui'
 Vue.use(Element);

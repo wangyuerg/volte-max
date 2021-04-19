@@ -1,0 +1,58 @@
+{
+    "data": {
+        "src": [{
+            "ULSINR": "-",
+            "ServingRSRP": "-",
+            "ServingRSRQ": "-",
+            "Time": "-",
+            "CellID": "212329798",
+            "MrType": "-",
+            "ENBReceivedPower": "-"
+        }],
+        "index": [{
+            "RTP_Packet_Loss_Num": "",
+            "RTCP_InterArrival_Jitter": "",
+            "Codec_Rate_LastSlice": "",
+            "RTCP_RingDelay": "",
+            "IntraRAT_HO_Num_Src": "0",
+            "RTP_Max_Interval": "",
+            "KQI_MOS": "",
+            "Codec_Rate_CurSlice": "",
+            "RTP_Interarrival_jitter": "",
+            "RTCP_Packet_Loss_Num": "",
+            "RTP_Consecutive_Lost_Num": "",
+            "IntraRAT_HO_Num_Dest": "0"
+        }],
+        "cause": [{
+            "Event_Type": "",
+            "Cause_Step": "",
+            "wireless": ""
+        }],
+        "event": [{
+            "Slice_Keep_Time": "",
+            "Start_ECI": "212329798",
+            "Event_Keep_Time": "",
+            "Codec_rate": "0.00 kbps",
+            "eventType": "切换",
+            "Event_End_Time": "",
+            "slice_end_time": "11:49:54.125",
+            "Seesion_End_Time": "",
+            "Event_Start_Time": "",
+            "Codec_type": "AMR",
+            "Change_Type": "",
+            "End_ECI": "212329798",
+            "slice_start_time": "11:49:43.201"
+        }],
+        "dest": [{
+            "ULSINR": "-",
+            "ServingRSRP": "-",
+            "ServingRSRQ": "-",
+            "Time": "-",
+            "CellID": "212329798",
+            "MrType": "-",
+            "ENBReceivedPower": "-"
+        }]
+    },
+    "status": "success",
+    "msg": "查询成功"
+}

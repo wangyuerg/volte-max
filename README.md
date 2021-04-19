@@ -38,6 +38,8 @@ nodejs
 
 # 开发启动服务
 npm run dev
+# 使用mock数据
+npm run mock
 # 打包指令
 npm run build
 
