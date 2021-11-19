@@ -2,9 +2,10 @@
     import { project, volte, video } from './assets/const'
     import resVolte from './mock/resVolte'
 
-    var host,curWwwPath,pathName,pos,localhostPath,webHost;
+    var host,curWwwPath,pathName,pos,localhostPath,webHost,resHost;
     host = "http://10.154.4.3:8080";
     webHost = 'http://localhost:8080';
+    resHost='http://10.154.4.3:8080';
     //var host = "http://188.102.11.97:8080";
     //var host = "http://10.254.10.62:8880";
     //获取当前网址，如： http://localhost:8080/Tmall/index.html
@@ -30,11 +31,12 @@
         //正式环境
         host = localhostPath;
         webHost = localhostPath;
+        resHost = localhostPath
     }else{
         //开发环境
-        webHost = 'http://localhost:8080';
-        host = 'http://localhost:8080';
-        console.info(webHost)
+        webHost = 'http://172.31.201.201:8085';
+        host = 'http://172.31.201.201:8085';
+        resHost = 'http://172.31.201.201:8085'
     }
     console.log('currentConst in config', currentConst)
 
@@ -44,7 +46,7 @@
         host:host,
         webHost:webHost,//前端服务器ip port
         serviceUrl:host+"/voltemax-service/cxf/jaxrs",//后端服务接口地址
-        resUrl:host+"/resource/",//前端资源文件路径
+        resUrl:resHost+"/resource/",//前端资源文件路径
         projectType: currentProject,
         const: currentConst,
         mockRes: currentMockRes,

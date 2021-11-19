@@ -331,9 +331,7 @@
                 //图表点击回调方法
                 clickfn:function(param){
                     // 没有图标
-                    if(!param.data.symbol) {
-                        console.log('图标获取失败')
-                    }
+                    if(!param.data.symbol)return;
                     var _id;
                     var _line;
                     var _sessionStartTime;

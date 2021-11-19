@@ -1,2 +1,5 @@
 *.zip
 /node_modules
+/volteMax
+*.war
+/dist

@@ -5,50 +5,50 @@
             "ServingRSRP": "-",
             "ServingRSRQ": "-",
             "Time": "-",
-            "CellID": "212329798",
+            "CellID": "48671169",
             "MrType": "-",
             "ENBReceivedPower": "-"
         }],
         "index": [{
-            "RTP_Packet_Loss_Num": "",
-            "RTCP_InterArrival_Jitter": "",
+            "RTP_Packet_Loss_Num": "1/289",
+            "RTCP_InterArrival_Jitter": "5.00",
             "Codec_Rate_LastSlice": "",
-            "RTCP_RingDelay": "",
-            "IntraRAT_HO_Num_Src": "0",
-            "RTP_Max_Interval": "",
-            "KQI_MOS": "",
+            "RTCP_RingDelay": "0.00",
+            "IntraRAT_HO_Num_Src": "",
+            "RTP_Max_Interval": "148",
+            "KQI_MOS": "2.90",
             "Codec_Rate_CurSlice": "",
-            "RTP_Interarrival_jitter": "",
-            "RTCP_Packet_Loss_Num": "",
-            "RTP_Consecutive_Lost_Num": "",
-            "IntraRAT_HO_Num_Dest": "0"
+            "RTP_Interarrival_jitter": "117.00",
+            "RTCP_Packet_Loss_Num": "1/289",
+            "RTP_Consecutive_Lost_Num": "1",
+            "IntraRAT_HO_Num_Dest": ""
         }],
         "cause": [{
-            "Event_Type": "",
-            "Cause_Step": "",
-            "wireless": ""
+            "Event_Type": "小区问题",
+            "Cause_Step": "无法判定问题阶段",
+            "wireless": "非无线环境问题"
         }],
         "event": [{
-            "Slice_Keep_Time": "",
-            "Start_ECI": "212329798",
+            "Slice_Keep_Time": "6463",
+            "Start_ECI": "",
             "Event_Keep_Time": "",
-            "Codec_rate": "0.00 kbps",
-            "eventType": "切换",
+            "Codec_rate": "23.85 kbps",
+            "eventType": "质差",
             "Event_End_Time": "",
-            "slice_end_time": "11:49:54.125",
+            "slice_end_time": "00:31:30.066",
             "Seesion_End_Time": "",
             "Event_Start_Time": "",
-            "Codec_type": "AMR",
+            "Codec_type": "AMR-WB",
             "Change_Type": "",
-            "End_ECI": "212329798",
-            "slice_start_time": "11:49:43.201"
+            "End_ECI": "",
+            "slice_start_time": "00:31:23.603"
         }],
         "dest": [{
             "ULSINR": "-",
             "ServingRSRP": "-",
             "ServingRSRQ": "-",
             "Time": "-",
-            "CellID": "212329798",
+            "CellID": "48671169",
             "MrType": "-",
             "ENBReceivedPower": "-"
         }]

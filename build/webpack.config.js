@@ -20,13 +20,18 @@ module.exports = {
         host: '127.0.0.1',
         quiet: false,
         noInfo: false,
-        // proxy: {
-        //     '/voltemax-service': {
-        //         target: 'http://localhost:8080',
-        //         changeOrigin: true,
-        //         secure: false
-        //     }
-        // }
+        proxy: {
+            '/voltemax-service': {
+                target: 'http://10.2.41.131:8080',
+                changeOrigin: true,
+                secure: false
+            },
+            '/GisMap': {
+                target: 'http://10.2.41.131:8080',
+                changeOrigin: true,
+                secure: false
+            }
+        }
      },
 
     // 输出配置
